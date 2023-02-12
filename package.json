@@ -1,0 +1,7 @@
+{
+  "name": "clubroom-management-bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "OctSquid",
+  "license": "MIT"
+}
