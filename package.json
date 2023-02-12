@@ -7,7 +7,7 @@
   "scripts": {
     "start": "yarn run build && yarn run serve",
     "build": "npx tsc",
-    "serve": "node --require dotenv/config dist/app.js",
+    "dev": "npx nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
