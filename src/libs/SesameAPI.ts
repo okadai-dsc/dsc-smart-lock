@@ -12,6 +12,10 @@ export class SesameAPI {
     SesameAPI.secretKey = secretKey;
   }
 
+  /**
+   * Sesame のステータスを取得する。
+   * @returns Sesame のステータス
+   */
   static async getStatus(): Promise<Status> {
     const res = await axios.get<Status>(
       `https://app.candyhouse.co/api/sesame2/${SesameAPI.deviceId}`,
