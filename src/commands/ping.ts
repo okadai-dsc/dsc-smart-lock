@@ -7,7 +7,7 @@ const command: SlashCommand = {
     description: 'pong',
   },
   execute: async (interaction: CommandInteraction) => {
-    await interaction.reply('🏓pong!');
+    await interaction.reply('🏓 pong!');
   },
 };
 
