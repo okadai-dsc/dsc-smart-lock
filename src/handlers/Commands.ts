@@ -1,3 +1,4 @@
+import { Logger } from '../libs/Logger';
 import { SlashCommand } from '../models/SlashCommand';
 import config from 'config';
 import { Client, REST, Routes } from 'discord.js';
@@ -26,10 +27,10 @@ module.exports = (client: Client) => {
     })
     .then((data: unknown) => {
       if (Array.isArray(data)) {
-        console.log(`🔥 Successfully loaded ${data.length} slash command(s)`);
+        Logger.info(`🔥 Successfully loaded ${data.length} slash command(s)`);
       }
     })
     .catch((e) => {
-      console.log(e);
+      Logger.error(e);
     });
 };

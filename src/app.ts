@@ -1,3 +1,4 @@
+import { Logger } from './libs/Logger';
 import { SlashCommand } from './models/SlashCommand';
 import config from 'config';
 import { Client, Collection, GatewayIntentBits } from 'discord.js';
@@ -6,6 +7,8 @@ import { readdirSync } from 'fs';
 import { join } from 'path';
 
 dotenv.config();
+
+Logger.initialize();
 
 const client = new Client({
   intents: [

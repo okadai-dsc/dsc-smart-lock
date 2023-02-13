@@ -1,3 +1,4 @@
+import { Logger } from '../libs/Logger';
 import { BotEvent } from '../models/BotEvent';
 import { Client } from 'discord.js';
 
@@ -5,7 +6,7 @@ const event: BotEvent = {
   name: 'ready',
   once: true,
   execute: (client: Client) => {
-    console.log(`💪 Logged in as ${client.user?.tag}`);
+    Logger.info(`💪 Logged in as ${client.user?.tag}`);
   },
 };
 
