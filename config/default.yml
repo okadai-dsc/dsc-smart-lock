@@ -5,5 +5,14 @@ discord:
   # Application ID
   applicationID: '000000000000000000000'
 
+# Sesameに関する設定
+sesame:
+  # APIキー
+  apiKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+  # SesameデバイスID
+  deviceId: 'xxxxxxxxxxxxxxxxxx'
+  # Sesameデバイスシークレット
+  secretKey: 'xxxxxxxxxxxxxxxxxx'
+
 # デバッグ情報の表示
 debug: false
