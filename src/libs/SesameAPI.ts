@@ -23,4 +23,27 @@ export class SesameAPI {
     );
     return res.data;
   }
+
+  /**
+   * Sesame の履歴を取得する。
+   *
+   * @param page ページ数。ページ数の0から、新→旧の履歴順番で、1ページの中に最多50件の履歴が入る。
+   * @param length 指定されたページの中に、新→旧の履歴順番で取得したい履歴件数。
+   * @returns 履歴の配列
+   */
+  static async getHistory(page: number, length = 10): Promise<History[]> {
+    const res = await axios.get<History[]>(
+      `https://app.candyhouse.co/api/sesame2/${SesameAPI.deviceId}/history`,
+      {
+        headers: {
+          'x-api-key': SesameAPI.apiKey,
+        },
+        params: {
+          page: page,
+          lg: length,
+        },
+      },
+    );
+    return res.data;
+  }
 }
