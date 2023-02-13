@@ -12,7 +12,10 @@
       "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/nodemon",
       "program": "${workspaceFolder}/dist/app.js",
       "restart": true,
-      "sourceMaps": true
+      "sourceMaps": true,
+      "env": {
+        "NODE_ENV": "dev"
+      }
     }
   ]
 }
