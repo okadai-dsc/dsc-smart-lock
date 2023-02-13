@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@slack/bolt": "^3.12.2",
+    "config": "^3.3.9",
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.3"
   },
