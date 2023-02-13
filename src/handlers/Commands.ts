@@ -5,17 +5,19 @@ import { Client, REST, Routes } from 'discord.js';
 import { readdirSync } from 'fs';
 import { join } from 'path';
 
-module.exports = (client: Client) => {
+export default async (client: Client) => {
   const commands: SlashCommand[] = [];
   const commandsDir = join(__dirname, '../commands');
 
-  readdirSync(commandsDir).forEach((file) => {
-    if (!(file.endsWith('.ts') || file.endsWith('.js'))) return;
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const command: SlashCommand = require(`${commandsDir}/${file}`).default;
-    commands.push(command);
-    client.commands.set(command.data.name, command);
-  });
+  await Promise.all(
+    readdirSync(commandsDir).map(async (file) => {
+      if (!(file.endsWith('.ts') || file.endsWith('.js'))) return;
+      const command: SlashCommand = (await import(`${commandsDir}/${file}`))
+        .default;
+      commands.push(command);
+      client.commands.set(command.data.name, command);
+    }),
+  );
 
   const rest = new REST({ version: '10' }).setToken(
     config.get('discord.token'),

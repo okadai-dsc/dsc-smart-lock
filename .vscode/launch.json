@@ -9,8 +9,14 @@
       "type": "node",
       "request": "launch",
       "cwd": "${workspaceFolder}",
-      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/nodemon",
-      "program": "${workspaceFolder}/dist/app.js",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/ts-node-dev",
+      "args": [
+        "--files",
+        "-r",
+        "tsconfig-paths/register",
+        "--respawn",
+        "./src/app.ts"
+      ],
       "restart": true,
       "sourceMaps": true,
       "env": {

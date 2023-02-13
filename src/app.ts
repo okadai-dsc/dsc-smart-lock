@@ -30,9 +30,11 @@ const client = new Client({
 client.commands = new Collection<string, SlashCommand>();
 
 const handlersDir = join(__dirname, './handlers');
-readdirSync(handlersDir).forEach((handler) => {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require(`${handlersDir}/${handler}`)(client);
-});
 
-client.login(config.get('discord.token'));
+Promise.all(
+  readdirSync(handlersDir).map(async (handler) => {
+    await (await import(`${handlersDir}/${handler}`)).default(client);
+  }),
+).then(() => {
+  client.login(config.get('discord.token'));
+});

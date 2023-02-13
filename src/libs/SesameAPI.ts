@@ -1,6 +1,6 @@
 import { ActionCommand, Status } from '@/models/Sesame';
 import generateRandomTag from '@/utils/generateRandomTag';
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 
 export class SesameAPI {
   private static apiKey: string;
