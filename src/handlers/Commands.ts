@@ -10,6 +10,7 @@ module.exports = (client: Client) => {
 
   readdirSync(commandsDir).forEach((file) => {
     if (!(file.endsWith('.ts') || file.endsWith('.js'))) return;
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const command: SlashCommand = require(`${commandsDir}/${file}`).default;
     commands.push(command);
     client.commands.set(command.data.name, command);
@@ -23,8 +24,10 @@ module.exports = (client: Client) => {
     .put(Routes.applicationCommands(config.get('discord.applicationID')), {
       body: commands.map((command) => command.data),
     })
-    .then((data: any) => {
-      console.log(`🔥 Successfully loaded ${data.length} slash command(s)`);
+    .then((data: unknown) => {
+      if (Array.isArray(data)) {
+        console.log(`🔥 Successfully loaded ${data.length} slash command(s)`);
+      }
     })
     .catch((e) => {
       console.log(e);

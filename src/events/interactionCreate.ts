@@ -3,11 +3,11 @@ import { Interaction } from 'discord.js';
 
 const event: BotEvent = {
   name: 'interactionCreate',
-  execute: (interaction: Interaction) => {
+  execute: async (interaction: Interaction) => {
     if (interaction.isChatInputCommand()) {
-      let command = interaction.client.commands.get(interaction.commandName);
+      const command = interaction.client.commands.get(interaction.commandName);
       if (!command) return;
-      command.execute(interaction);
+      await command.execute(interaction);
     } else if (interaction.isAutocomplete()) {
       const command = interaction.client.commands.get(interaction.commandName);
       if (!command) {
@@ -18,7 +18,7 @@ const event: BotEvent = {
       }
       try {
         if (!command.autocomplete) return;
-        command.autocomplete(interaction);
+        await command.autocomplete(interaction);
       } catch (error) {
         console.error(error);
       }
