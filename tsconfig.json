@@ -14,7 +14,8 @@
     "resolveJsonModule": true,
     "sourceMap": true,
     "paths": {
-      "*": ["node_modules/*", "src/models/*"]
+      "*": ["node_modules/*"],
+      "@/*": ["src/*"]
     }
   },
   "include": ["src/**/*"],

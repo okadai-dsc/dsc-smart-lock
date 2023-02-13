@@ -1,5 +1,5 @@
-import { ActionCommand, Status } from '../models/Sesame';
-import generateRandomTag from '../utils/generateRandomTag';
+import { ActionCommand, Status } from '@/models/Sesame';
+import generateRandomTag from '@/utils/generateRandomTag';
 import axios, { AxiosError } from 'axios';
 
 export class SesameAPI {

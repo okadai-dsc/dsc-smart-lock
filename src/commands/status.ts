@@ -1,5 +1,5 @@
-import { SesameAPI } from '../libs/SesameAPI';
-import { SlashCommand } from '../models/SlashCommand';
+import { SesameAPI } from '@/libs/SesameAPI';
+import { SlashCommand } from '@/models/SlashCommand';
 import { CommandInteraction } from 'discord.js';
 
 const command: SlashCommand = {

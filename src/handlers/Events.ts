@@ -1,5 +1,5 @@
-import { Logger } from '../libs/Logger';
-import { BotEvent } from '../models/BotEvent';
+import { Logger } from '@/libs/Logger';
+import { BotEvent } from '@/models/BotEvent';
 import { Client } from 'discord.js';
 import { readdirSync } from 'fs';
 import { join } from 'path';

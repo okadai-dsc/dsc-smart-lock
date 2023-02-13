@@ -1,5 +1,5 @@
-import { Logger } from '../libs/Logger';
-import { SlashCommand } from '../models/SlashCommand';
+import { Logger } from '@/libs/Logger';
+import { SlashCommand } from '@/models/SlashCommand';
 import config from 'config';
 import { Client, REST, Routes } from 'discord.js';
 import { readdirSync } from 'fs';
