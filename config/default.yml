@@ -1,0 +1,7 @@
+# DiscordBotに関する設定
+discord:
+  # Bot接続に使用するToken
+  token: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+
+# デバッグ情報の表示
+debug: false
