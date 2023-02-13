@@ -1,5 +1,5 @@
-import { Client } from 'discord.js';
 import { BotEvent } from '../models/BotEvent';
+import { Client } from 'discord.js';
 
 const event: BotEvent = {
   name: 'ready',

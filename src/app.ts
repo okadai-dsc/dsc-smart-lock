@@ -1,9 +1,9 @@
+import { SlashCommand } from './models/SlashCommand';
+import config from 'config';
 import { Client, Collection, GatewayIntentBits } from 'discord.js';
 import dotenv from 'dotenv';
-import config from 'config';
 import { readdirSync } from 'fs';
 import { join } from 'path';
-import { SlashCommand } from './models/SlashCommand';
 
 dotenv.config();
 

@@ -1,5 +1,4 @@
 import { SlashCommand } from '../models/SlashCommand';
-
 import { CommandInteraction } from 'discord.js';
 
 const command: SlashCommand = {

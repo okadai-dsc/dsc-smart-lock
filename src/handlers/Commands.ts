@@ -1,8 +1,8 @@
-import { Client, REST, Routes } from 'discord.js';
 import { SlashCommand } from '../models/SlashCommand';
-import { join } from 'path';
-import { readdirSync } from 'fs';
 import config from 'config';
+import { Client, REST, Routes } from 'discord.js';
+import { readdirSync } from 'fs';
+import { join } from 'path';
 
 module.exports = (client: Client) => {
   const commands: SlashCommand[] = [];
