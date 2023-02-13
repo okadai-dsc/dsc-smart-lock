@@ -2,6 +2,8 @@
 discord:
   # Bot接続に使用するToken
   token: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+  # Application ID
+  applicationID: '000000000000000000000'
 
 # デバッグ情報の表示
 debug: false
