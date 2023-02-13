@@ -7,3 +7,6 @@ dist
 # config
 config/*
 !default.yml
+
+# logs
+logs
