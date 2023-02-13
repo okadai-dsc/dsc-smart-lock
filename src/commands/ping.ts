@@ -4,7 +4,7 @@ import { CommandInteraction } from 'discord.js';
 const command: SlashCommand = {
   data: {
     name: 'ping',
-    description: 'pong',
+    description: '🏓 pong',
   },
   execute: async (interaction: CommandInteraction) => {
     await interaction.reply('🏓 pong!');
