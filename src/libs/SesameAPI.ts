@@ -1,4 +1,5 @@
-import { Status } from 'Sesame';
+import { ActionCommand, Status } from '../models/Sesame';
+import generateRandomTag from '../utils/generateRandomTag';
 import axios, { AxiosError } from 'axios';
 
 export class SesameAPI {
@@ -49,5 +50,28 @@ export class SesameAPI {
       },
     );
     return res.data;
+  }
+
+  static async control(command: ActionCommand): Promise<void> {
+    const base64_history = Buffer.from('dsc').toString('base64');
+    const sign = generateRandomTag(SesameAPI.secretKey);
+
+    const res = await axios.post(
+      `https://app.candyhouse.co/api/sesame2/${SesameAPI.deviceId}/cmd`,
+      {
+        headers: {
+          'x-api-key': SesameAPI.apiKey,
+        },
+        data: {
+          cmd: command,
+          history: base64_history,
+          sign: sign,
+        },
+      },
+    );
+
+    console.log(res);
+
+    return;
   }
 }
