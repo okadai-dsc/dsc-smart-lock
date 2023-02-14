@@ -4,6 +4,8 @@ discord:
   token: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
   # Application ID
   applicationID: '000000000000000000000'
+  # 鍵を操作することができるロールのID
+  allowedRoleID: '00000000000000000000'
 
 # Sesameに関する設定
 sesame:
