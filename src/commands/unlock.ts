@@ -56,7 +56,7 @@ const command: SlashCommand = {
 
       await interaction.deferReply();
 
-      await SesameAPI.control(83);
+      await SesameAPI.control(83, userName, 'Discord');
       slackWebhook.send({
         attachments: [
           {
