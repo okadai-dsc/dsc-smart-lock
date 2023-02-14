@@ -23,6 +23,11 @@ const command: SlashCommand = {
           timestamp: new Date(status.timestamp * 1000).toISOString(),
           fields: [
             {
+              name: '📡 接続状況',
+              value: status.wm2State ? `オンライン` : `オフライン`,
+              inline: true,
+            },
+            {
               name: '🔋 電池残量',
               value: `${status.batteryPercentage} %`,
               inline: true,

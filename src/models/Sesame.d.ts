@@ -9,6 +9,8 @@ export interface Status {
   CHSesame2Status: 'locked' | 'unlocked' | 'moved';
   /** Sesame Shadow が更新された時間 */
   timestamp: number;
+  /** WiFiモジュール2 との接続 */
+  wm2State: boolean;
 }
 
 export enum ActionType {
