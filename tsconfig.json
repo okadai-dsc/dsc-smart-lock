@@ -9,10 +9,11 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
-    "module": "commonjs",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "sourceMap": true,
+    "typeRoots": ["./src/models"],
     "paths": {
       "*": ["node_modules/*"],
       "@/*": ["src/*"]
