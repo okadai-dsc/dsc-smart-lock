@@ -38,7 +38,7 @@ const command: SlashCommand = {
             color: '#39f778',
             title: '🔓 UnLock',
             text: 'コマンドで解錠しました',
-            ts: String(Date.now()),
+            ts: String(Date.now() / 1000),
           },
         ],
       });

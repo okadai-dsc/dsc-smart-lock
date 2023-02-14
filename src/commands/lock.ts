@@ -40,7 +40,7 @@ const command: SlashCommand = {
             color: '#fa3c2a',
             title: '🔒 Lock',
             text: 'コマンドで施錠しました',
-            ts: String(Date.now()),
+            ts: String(Date.now() / 1000),
           },
         ],
       });
