@@ -14,5 +14,10 @@ sesame:
   # Sesameデバイスシークレット
   secretKey: 'xxxxxxxxxxxxxxxxxx'
 
+# Slackに関する設定
+slack:
+  # WebHookのURL
+  webhook: 'xxxxxxxxxxxxxxxxxxxxxxxxxx'
+
 # デバッグ情報の表示
 debug: false

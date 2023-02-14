@@ -1,8 +1,9 @@
 import { Logger } from '@/libs/Logger';
 import { SesameAPI } from '@/libs/SesameAPI';
-import { ActionCommand } from '@/models/Sesame';
 import { SlashCommand } from '@/models/SlashCommand';
+import { IncomingWebhook } from '@slack/webhook';
 import axios from 'axios';
+import config from 'config';
 import { CommandInteraction } from 'discord.js';
 
 const command: SlashCommand = {
@@ -12,7 +13,35 @@ const command: SlashCommand = {
   },
   execute: async (interaction: CommandInteraction) => {
     try {
+      const slackWebhook = new IncomingWebhook(config.get('slack.webhook'));
+      let userName = interaction.user.username;
+      let userIcon = `${interaction.user.avatarURL({ extension: 'png' })}`;
+
+      if (interaction.member) {
+        const member = await interaction.guild?.members.fetch(
+          interaction.user.id,
+        );
+        if (member?.nickname) {
+          userName = member.nickname;
+        }
+        if (member?.avatarURL()) {
+          userIcon = `member.avatarURL({ extension: 'png' })`;
+        }
+      }
+
       await SesameAPI.control(83);
+      slackWebhook.send({
+        attachments: [
+          {
+            author_name: userName,
+            author_icon: userIcon,
+            color: '#39f778',
+            title: '🔓 UnLock',
+            text: 'コマンドで解錠しました',
+            ts: String(Date.now()),
+          },
+        ],
+      });
       await interaction.reply({
         embeds: [
           {
