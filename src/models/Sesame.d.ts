@@ -75,7 +75,7 @@ export type ActionType_UnLock =
 
 export interface History {
   type: ActionType;
-  /** 1979/1/1 00:00:00 からミリ秒単位のタイムスタンプ */
+  /** 1970/1/1 00:00:00 からミリ秒単位のタイムスタンプ */
   timeStamp: number;
   /** 鍵についているタグやメモ */
   historyTag: string;
