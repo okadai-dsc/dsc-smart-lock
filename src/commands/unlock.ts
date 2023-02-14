@@ -56,12 +56,12 @@ const command: SlashCommand = {
 
       await interaction.deferReply();
 
-      await SesameAPI.control(83);
+      await SesameAPI.control(83, userName, 'Discord');
       slackWebhook.send({
         attachments: [
           {
             color: '#39f778',
-            title: '🔓 UnLock',
+            title: '🔓 Unlock',
             text: 'コマンドで解錠しました',
             footer_icon: userIcon,
             footer: `by ${userName}`,
