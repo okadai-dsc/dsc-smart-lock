@@ -61,7 +61,7 @@ const command: SlashCommand = {
         attachments: [
           {
             color: '#39f778',
-            title: '🔓 UnLock',
+            title: '🔓 Unlock',
             text: 'コマンドで解錠しました',
             footer_icon: userIcon,
             footer: `by ${userName}`,
