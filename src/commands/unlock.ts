@@ -1,6 +1,7 @@
 import { Logger } from '@/libs/Logger';
 import { SesameAPI } from '@/libs/SesameAPI';
 import { SlashCommand } from '@/models/SlashCommand';
+import isGuildMemberRoleManager from '@/utils/isGuildMemberRoleManager';
 import { IncomingWebhook } from '@slack/webhook';
 import axios from 'axios';
 import config from 'config';
@@ -12,6 +13,30 @@ const command: SlashCommand = {
     description: '🔓 Sesame を解錠する',
   },
   execute: async (interaction: CommandInteraction) => {
+    if (!interaction.member) {
+      await interaction.reply({
+        embeds: [{ title: '❌ このコマンドはDMでは使用できません。' }],
+      });
+      return;
+    }
+    const roles = interaction.member.roles;
+    const allowedRoleId = config.get<string>('discord.allowedRoleID');
+    if (
+      isGuildMemberRoleManager(roles)
+        ? !roles.cache.some((role) => role.id === allowedRoleId)
+        : !(roles as string[]).some((role) => role === allowedRoleId)
+    ) {
+      await interaction.reply({
+        embeds: [
+          {
+            title: '❌ 権限がありません。',
+            description: `次のロールが必要です: <@&${allowedRoleId}>`,
+          },
+        ],
+        ephemeral: true,
+      });
+      return;
+    }
     try {
       const slackWebhook = new IncomingWebhook(config.get('slack.webhook'));
       let userName = interaction.user.username;
