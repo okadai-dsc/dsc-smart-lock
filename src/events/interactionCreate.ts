@@ -1,7 +1,8 @@
-import { BotEvent } from '@/models/BotEvent';
+import { BotEvent } from '@/models/Event';
 import { Interaction } from 'discord.js';
 
 const event: BotEvent = {
+  type: 'bot',
   name: 'interactionCreate',
   execute: async (interaction: Interaction) => {
     if (interaction.isChatInputCommand()) {
