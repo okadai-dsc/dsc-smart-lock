@@ -52,8 +52,14 @@ export class SesameAPI {
     return res.data;
   }
 
-  static async control(command: ActionCommand): Promise<void> {
-    const base64_history = Buffer.from('dsc').toString('base64');
+  static async control(
+    command: ActionCommand,
+    author = 'bot',
+    source = 'unknown',
+  ): Promise<void> {
+    const base64_history = Buffer.from(`${author}(${source})`).toString(
+      'base64',
+    );
     const sign = generateRandomTag(SesameAPI.secretKey);
 
     const res = await axios({
