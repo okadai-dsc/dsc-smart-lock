@@ -29,20 +29,22 @@ const command: SlashCommand = {
         }
       }
 
+      await interaction.deferReply();
+
       await SesameAPI.control(83);
       slackWebhook.send({
         attachments: [
           {
-            author_name: userName,
-            author_icon: userIcon,
             color: '#39f778',
             title: '🔓 UnLock',
             text: 'コマンドで解錠しました',
+            footer_icon: userIcon,
+            footer: `by ${userName}`,
             ts: String(Date.now() / 1000),
           },
         ],
       });
-      await interaction.reply({
+      await interaction.editReply({
         embeds: [
           {
             title: '✅ 解錠しました',
