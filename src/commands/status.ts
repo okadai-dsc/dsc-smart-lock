@@ -8,8 +8,9 @@ const command: SlashCommand = {
     description: '🩺 セサミデバイスの状態を取得する',
   },
   execute: async (interaction: CommandInteraction) => {
+    await interaction.deferReply();
     const status = await SesameAPI.getStatus();
-    await interaction.reply({
+    await interaction.editReply({
       embeds: [
         {
           author: {
