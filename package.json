@@ -5,7 +5,7 @@
   "author": "OctSquid",
   "license": "MIT",
   "scripts": {
-    "start": "yarn build && yarn serve",
+    "start": "ts-node --files -r tsconfig-paths/register src/app.ts",
     "build": "tsc",
     "dev": "cross-env NODE_ENV=dev ts-node-dev --files -r tsconfig-paths/register --respawn ./src/app.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
