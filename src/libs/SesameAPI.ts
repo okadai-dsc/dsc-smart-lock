@@ -56,19 +56,30 @@ export class SesameAPI {
     const base64_history = Buffer.from('dsc').toString('base64');
     const sign = generateRandomTag(SesameAPI.secretKey);
 
-    const res = await axios.post(
-      `https://app.candyhouse.co/api/sesame2/${SesameAPI.deviceId}/cmd`,
-      {
-        headers: {
-          'x-api-key': SesameAPI.apiKey,
-        },
-        data: {
-          cmd: command,
-          history: base64_history,
-          sign: sign,
-        },
+    const res = await axios({
+      method: 'post',
+      url: `https://app.candyhouse.co/api/sesame2/${SesameAPI.deviceId}/cmd`,
+      headers: { 'x-api-key': SesameAPI.apiKey },
+      data: {
+        cmd: command,
+        history: base64_history,
+        sign: sign,
       },
-    );
+    });
+
+    // const res = await axios.post(
+    //   `https://app.candyhouse.co/api/sesame2/${SesameAPI.deviceId}/cmd`,
+    //   {
+    //     headers: {
+    //       'x-api-key': SesameAPI.apiKey,
+    //     },
+    //     data: {
+    //       cmd: command,
+    //       history: base64_history,
+    //       sign: sign,
+    //     },
+    //   },
+    // );
 
     console.log(res);
 
