@@ -5,8 +5,8 @@
   "author": "OctSquid",
   "license": "MIT",
   "scripts": {
-    "start": "yarn run build && yarn run serve",
-    "build": "npx tsc",
+    "start": "yarn build && yarn serve",
+    "build": "tsc",
     "dev": "cross-env NODE_ENV=dev ts-node-dev --files -r tsconfig-paths/register --respawn ./src/app.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint .",
