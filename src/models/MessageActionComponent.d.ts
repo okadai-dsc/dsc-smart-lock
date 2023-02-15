@@ -7,5 +7,5 @@ type MessageActionComponentExecuteOptions = {
 export interface MessageActionComponent {
   id: string;
   view: (options: any) => Promise<MessageActionRow>;
-  execute: (options: MessageActionComponentExecuteOptions) => void;
+  execute: (options: MessageActionComponentExecuteOptions) => Promise<void>;
 }
