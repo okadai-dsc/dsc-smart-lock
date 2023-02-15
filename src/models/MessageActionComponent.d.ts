@@ -1,11 +1,11 @@
 import { MessageActionRow, MessageComponentInteraction } from 'discord.js';
 
-type MessageComponentExecuteOptions = {
+type MessageActionComponentExecuteOptions = {
   interaction: MessageComponentInteraction;
 };
 
-export interface MessageComponent {
+export interface MessageActionComponent {
   id: string;
-  view: (options) => Promise<MessageActionRow>;
+  view: (options: any) => Promise<MessageActionRow>;
   execute: (options: MessageActionComponentExecuteOptions) => void;
 }
