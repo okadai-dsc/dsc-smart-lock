@@ -1,8 +1,6 @@
 import { Logger } from '@/libs/Logger';
 import { SesameAPI } from '@/libs/SesameAPI';
-import { DiscordMessages } from '@/messages';
-import lockedSlackMessage from '@/messages/slack/locked';
-import unlockedSlackMessage from '@/messages/slack/unlocked';
+import { DiscordMessages, SlackMessages } from '@/messages';
 import { MessageActionComponent } from '@/models/MessageActionComponent';
 import isGuildMemberRoleManager from '@/utils/isGuildMemberRoleManager';
 import { IncomingWebhook } from '@slack/webhook';
@@ -77,7 +75,7 @@ const component: MessageActionComponent = {
         case 'keycontrol.lock':
           await SesameAPI.control(82, userName, 'Discord');
           slackWebhook.send(
-            lockedSlackMessage({
+            SlackMessages.locked({
               userIcon: userIcon,
               userName: userName,
             }),
@@ -87,7 +85,7 @@ const component: MessageActionComponent = {
         case 'keycontrol.unlock':
           await SesameAPI.control(83, userName, 'Discord');
           slackWebhook.send(
-            unlockedSlackMessage({
+            SlackMessages.unlocked({
               userIcon: userIcon,
               userName: userName,
             }),
