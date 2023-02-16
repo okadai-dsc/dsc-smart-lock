@@ -6,7 +6,7 @@ const event: BotEvent = {
   type: 'bot',
   name: 'ready',
   once: true,
-  execute: (client: Client) => {
+  execute: async (client: Client) => {
     Logger.info(`💪 Logged in as ${client.user?.tag}`);
   },
 };
