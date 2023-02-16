@@ -1,21 +1,47 @@
+import { Client } from 'discord.js';
+
 /**
- * 定期実行されるタスク
+ * ハンドラによってロードされた時に一度だけ実行されるタスク
  */
-export interface ScheduledTask<T = void, K = void> {
-  type: 'scheduled';
-  /** 実行間隔 (秒) */
+export interface InitTask {
+  name: string;
+  type: 'init';
+  /** 実行される関数 */
+  execute: () => Promise<void>;
+}
+
+/**
+ * IntervalBaseに定期実行されるタスク
+ */
+export interface IntervalTask {
+  name: string;
+  type: 'interval';
+  /** 実行間隔 (ms) */
   interval: number;
   /** 実行される関数 */
-  execute: (props: T) => K;
+  execute: (client: Client) => Promise<void>;
+}
+
+/**
+ * TimeBaseに定期実行されるタスク
+ */
+export interface ScheduledTask {
+  name: string;
+  type: 'scheduled';
+  /** cron書式の実行間隔 */
+  cronExpression: string;
+  /** 実行される関数 */
+  execute: (client: Client) => Promise<void>;
 }
 
 /**
  * 任意のタイミングで一度実行されるタスク
  */
-export interface OneShotTask<T = void, K = void> {
-  type: 'oneShot';
+export interface ManualTask<T = void, K = void> {
+  name: string;
+  type: 'manual';
   /** 実行される関数 */
-  execute: (props: T) => K;
+  execute: (props: T) => Promise<K>;
 }
 
-export type Task<T = void, K = void> = ScheduledTask<T, K> | OneShotTask<T, K>;
+export type Task = InitTask | IntervalTask | ScheduledTask | ManualTask;
