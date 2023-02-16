@@ -1,5 +1,3 @@
-import { Client } from 'discord.js';
-
 export interface BotEvent {
   type: 'bot';
   name: string;
