@@ -2,6 +2,7 @@ import { SlashCommand } from '@/models/SlashCommand';
 import { CommandInteraction } from 'discord.js';
 
 const command: SlashCommand = {
+  allowDM: true,
   data: {
     name: 'hello',
     description: '👋😀 挨拶を返す',

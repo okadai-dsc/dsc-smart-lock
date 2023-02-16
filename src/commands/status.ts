@@ -4,6 +4,7 @@ import { SlashCommand } from '@/models/SlashCommand';
 import { CommandInteraction } from 'discord.js';
 
 const command: SlashCommand = {
+  allowDM: true,
   data: {
     name: 'status',
     description: '🩺 セサミデバイスの状態を取得する',
