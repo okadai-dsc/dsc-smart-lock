@@ -1,4 +1,4 @@
-import { MessageActionRow, MessageComponentInteraction } from 'discord.js';
+import { MessageComponentInteraction } from 'discord.js';
 
 export type MessageActionComponentExecute = (
   interaction: MessageComponentInteraction,

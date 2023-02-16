@@ -1,9 +1,13 @@
 import { Logger } from '@/libs/Logger';
 import { SesameAPI } from '@/libs/SesameAPI';
+import cannotUseDMMessage from '@/messages/discord/cannotUseDM';
+import errorMessage from '@/messages/discord/error';
+import needRoleMessage from '@/messages/discord/needRole';
+import unlockedDiscordMessage from '@/messages/discord/unlocked';
+import unlockedSlackMessage from '@/messages/slack/unlocked';
 import { SlashCommand } from '@/models/SlashCommand';
 import isGuildMemberRoleManager from '@/utils/isGuildMemberRoleManager';
 import { IncomingWebhook } from '@slack/webhook';
-import axios from 'axios';
 import config from 'config';
 import { CommandInteraction } from 'discord.js';
 
@@ -14,9 +18,7 @@ const command: SlashCommand = {
   },
   execute: async (interaction: CommandInteraction) => {
     if (!interaction.member) {
-      await interaction.reply({
-        embeds: [{ title: '❌ このコマンドはDMでは使用できません。' }],
-      });
+      await interaction.reply(cannotUseDMMessage());
       return;
     }
     const roles = interaction.member.roles;
@@ -26,15 +28,11 @@ const command: SlashCommand = {
         ? !roles.cache.some((role) => role.id === allowedRoleId)
         : !(roles as string[]).some((role) => role === allowedRoleId)
     ) {
-      await interaction.reply({
-        embeds: [
-          {
-            title: '❌ 権限がありません。',
-            description: `次のロールが必要です: <@&${allowedRoleId}>`,
-          },
-        ],
-        ephemeral: true,
-      });
+      await interaction.reply(
+        needRoleMessage({
+          id: allowedRoleId,
+        }),
+      );
       return;
     }
     try {
@@ -57,34 +55,16 @@ const command: SlashCommand = {
       await interaction.deferReply();
 
       await SesameAPI.control(83, userName, 'Discord');
-      slackWebhook.send({
-        attachments: [
-          {
-            color: '#39f778',
-            title: '🔓 Unlock',
-            text: 'コマンドで解錠しました',
-            footer_icon: userIcon,
-            footer: `by ${userName}`,
-            ts: String(Date.now() / 1000),
-          },
-        ],
-      });
-      await interaction.editReply({
-        embeds: [
-          {
-            title: '✅ 解錠しました',
-            timestamp: new Date(Date.now()).toISOString(),
-          },
-        ],
-      });
+      slackWebhook.send(
+        unlockedSlackMessage({ userIcon: userIcon, userName: userName }),
+      );
+      await interaction.editReply(unlockedDiscordMessage());
     } catch (e) {
-      if (axios.isAxiosError(e)) {
-        Logger.error(e.message);
-        Logger.trace(`${e.stack}`);
+      if ((e as Error).message) {
+        Logger.error((e as Error).message);
+        Logger.trace(`${(e as Error).stack}`);
+        await interaction.reply(errorMessage({ detail: (e as Error).message }));
       }
-      await interaction.reply({
-        embeds: [{ title: '❌ エラーの発生' }],
-      });
     }
   },
 };
