@@ -4,7 +4,7 @@ const message: DiscordMessage<{ detail: string }> = (props) => {
   return {
     embeds: [
       {
-        title: '✅ 施錠しました',
+        title: '❌ エラーが発生しました',
         description: props.detail,
         timestamp: new Date(Date.now()).toISOString(),
       },
