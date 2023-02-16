@@ -1,5 +1,6 @@
 import { Logger } from './libs/Logger';
 import { SesameAPI } from './libs/SesameAPI';
+import { MessageActionComponent } from './models/MessageActionComponent';
 import { SlashCommand } from './models/SlashCommand';
 import config from 'config';
 import { Client, Collection, GatewayIntentBits } from 'discord.js';
@@ -28,6 +29,7 @@ const client = new Client({
 });
 
 client.commands = new Collection<string, SlashCommand>();
+client.components = new Collection<string, MessageActionComponent>();
 
 const handlersDir = join(__dirname, './handlers');
 
