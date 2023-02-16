@@ -6,6 +6,6 @@ export type MessageActionComponentExecute = (
 
 export interface MessageActionComponent {
   id: string;
-  view: (options: any) => Promise<MessageActionRow>;
+  view: (...args) => Promise<ActionRowBuilder>;
   execute: MessageActionComponentExecute;
 }
