@@ -18,4 +18,4 @@ export interface OneShotTask<T = void, K = void> {
   execute: (props: T) => K;
 }
 
-export type Task = ScheduledTask | OneShotTask;
+export type Task<T = void, K = void> = ScheduledTask<T, K> | OneShotTask<T, K>;
