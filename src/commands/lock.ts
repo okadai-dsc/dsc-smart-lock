@@ -1,5 +1,5 @@
 import { SesameAPI } from '@/libs/SesameAPI';
-import lockedDiscordMessage from '@/messages/discord/locked';
+import { DiscordMessages } from '@/messages';
 import lockedSlackMessage from '@/messages/slack/locked';
 import { SlashCommand } from '@/models/SlashCommand';
 import { IncomingWebhook } from '@slack/webhook';
@@ -36,7 +36,7 @@ const command: SlashCommand = {
     slackWebhook.send(
       lockedSlackMessage({ userIcon: userIcon, userName: userName }),
     );
-    await interaction.editReply(lockedDiscordMessage());
+    await interaction.editReply(DiscordMessages.locked());
   },
 };
 

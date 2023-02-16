@@ -1,10 +1,6 @@
 import { Logger } from '@/libs/Logger';
 import { SesameAPI } from '@/libs/SesameAPI';
-import cannotUseDMMessage from '@/messages/discord/cannotUseDM';
-import errorMessage from '@/messages/discord/error';
-import lockedDiscordMessage from '@/messages/discord/locked';
-import needRoleMessage from '@/messages/discord/needRole';
-import unlockedDiscordMessage from '@/messages/discord/unlocked';
+import { DiscordMessages } from '@/messages';
 import lockedSlackMessage from '@/messages/slack/locked';
 import unlockedSlackMessage from '@/messages/slack/unlocked';
 import { MessageActionComponent } from '@/models/MessageActionComponent';
@@ -41,7 +37,7 @@ const component: MessageActionComponent = {
   },
   execute: async (interaction) => {
     if (!interaction.member) {
-      await interaction.reply(cannotUseDMMessage());
+      await interaction.reply(DiscordMessages.cannotUseDM());
       return;
     }
     const roles = interaction.member.roles;
@@ -52,7 +48,7 @@ const component: MessageActionComponent = {
         : !(roles as string[]).some((role) => role === allowedRoleId)
     ) {
       await interaction.reply({
-        ...needRoleMessage({ id: allowedRoleId }),
+        ...DiscordMessages.needRole({ id: allowedRoleId }),
         ephemeral: true,
       });
       return;
@@ -72,7 +68,7 @@ const component: MessageActionComponent = {
           userName = member.nickname;
         }
         if (member?.avatarURL()) {
-          userIcon = `member.avatarURL({ extension: 'png' })`;
+          userIcon = `${member.avatarURL({ extension: 'png' })}`;
         }
       }
 
@@ -86,7 +82,7 @@ const component: MessageActionComponent = {
               userName: userName,
             }),
           );
-          await interaction.editReply(lockedDiscordMessage());
+          await interaction.editReply(DiscordMessages.locked());
           break;
         case 'keycontrol.unlock':
           await SesameAPI.control(83, userName, 'Discord');
@@ -96,7 +92,7 @@ const component: MessageActionComponent = {
               userName: userName,
             }),
           );
-          await interaction.editReply(unlockedDiscordMessage());
+          await interaction.editReply(DiscordMessages.unlocked());
           break;
       }
     } catch (e) {
@@ -104,7 +100,7 @@ const component: MessageActionComponent = {
         Logger.error((e as Error).message);
         Logger.trace(`${(e as Error).stack}`);
         await interaction.editReply(
-          errorMessage({ detail: (e as Error).message }),
+          DiscordMessages.error({ detail: (e as Error).message }),
         );
       }
     }

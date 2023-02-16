@@ -1,5 +1,5 @@
 import { SesameAPI } from '@/libs/SesameAPI';
-import statusMessage from '@/messages/discord/deviceStatus';
+import { DiscordMessages } from '@/messages';
 import { SlashCommand } from '@/models/SlashCommand';
 import { CommandInteraction } from 'discord.js';
 
@@ -12,7 +12,7 @@ const command: SlashCommand = {
   execute: async (interaction: CommandInteraction) => {
     await interaction.deferReply();
     const status = await SesameAPI.getStatus();
-    await interaction.editReply(statusMessage(status));
+    await interaction.editReply(DiscordMessages.deviceStatus(status));
   },
 };
 

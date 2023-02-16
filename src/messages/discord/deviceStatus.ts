@@ -1,7 +1,7 @@
 import { DiscordMessage } from '@/models/Message';
 import { Status } from '@/models/Sesame';
 
-const message: DiscordMessage<Status> = (status) => {
+export const deviceStatus: DiscordMessage<Status> = (status) => {
   return {
     embeds: [
       {
@@ -45,5 +45,3 @@ const message: DiscordMessage<Status> = (status) => {
     ],
   };
 };
-
-export default message;

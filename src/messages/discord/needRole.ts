@@ -1,6 +1,6 @@
 import { DiscordMessage } from '@/models/Message';
 
-const message: DiscordMessage<{ id: string }> = (props) => {
+export const needRole: DiscordMessage<{ id: string }> = (props) => {
   return {
     embeds: [
       {
@@ -10,5 +10,3 @@ const message: DiscordMessage<{ id: string }> = (props) => {
     ],
   };
 };
-
-export default message;

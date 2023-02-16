@@ -1,6 +1,6 @@
 import { DiscordMessage } from '@/models/Message';
 
-const message: DiscordMessage = () => {
+export const locked: DiscordMessage = () => {
   return {
     embeds: [
       {
@@ -10,5 +10,3 @@ const message: DiscordMessage = () => {
     ],
   };
 };
-
-export default message;
