@@ -1,3 +1,4 @@
+import { Logger } from '@/libs/Logger';
 import { BotEvent } from '@/models/Event';
 import { Interaction } from 'discord.js';
 
@@ -17,11 +18,16 @@ const event: BotEvent = {
         );
         return;
       }
+    } else if (interaction.isMessageComponent()) {
+      const component = interaction.client.components.get(
+        interaction.customId.split('.')[0],
+      );
+      if (!component) return;
       try {
-        if (!command.autocomplete) return;
-        await command.autocomplete(interaction);
-      } catch (error) {
-        console.error(error);
+        await component.execute(interaction);
+      } catch (e) {
+        Logger.error(`Faild to execute component: ${component.id}`);
+        Logger.trace(String(e));
       }
     }
   },
