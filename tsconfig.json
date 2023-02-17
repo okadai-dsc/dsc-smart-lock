@@ -14,11 +14,12 @@
     "resolveJsonModule": true,
     "sourceMap": true,
     "typeRoots": ["./src/models"],
+    "incremental": true,
     "paths": {
       "*": ["node_modules/*"],
       "@/*": ["src/*"]
     }
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist"]
 }
