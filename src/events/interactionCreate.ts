@@ -1,7 +1,5 @@
 import { Logger } from '@/libs/Logger';
-import cannotUseDMMessage from '@/messages/discord/cannotUseDM';
-import errorMessage from '@/messages/discord/error';
-import needRoleMessage from '@/messages/discord/needRole';
+import { DiscordMessages } from '@/messages';
 import { BotEvent } from '@/models/Event';
 import isGuildMemberRoleManager from '@/utils/isGuildMemberRoleManager';
 import { Interaction } from 'discord.js';
@@ -26,7 +24,7 @@ const event: BotEvent = {
                 )
           ) {
             await interaction.reply({
-              ...needRoleMessage({
+              ...DiscordMessages.needRole({
                 id: command.allowedRoleId,
               }),
               ephemeral: true,
@@ -37,7 +35,7 @@ const event: BotEvent = {
       } else {
         // DMでの実行が使用制限
         if (!command.allowDM) {
-          await interaction.reply(cannotUseDMMessage());
+          await interaction.reply(DiscordMessages.cannotUseDM());
           return;
         }
       }
@@ -48,11 +46,11 @@ const event: BotEvent = {
         if ((e as Error).message) {
           if (interaction.replied) {
             await interaction.editReply(
-              errorMessage({ detail: (e as Error).message }),
+              DiscordMessages.error({ detail: (e as Error).message }),
             );
           } else {
             await interaction.reply(
-              errorMessage({ detail: (e as Error).message }),
+              DiscordMessages.error({ detail: (e as Error).message }),
             );
           }
           Logger.error(`Failed to execute command: ${command.data.name}`);

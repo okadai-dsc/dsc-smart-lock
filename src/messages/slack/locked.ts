@@ -1,6 +1,6 @@
 import { SlackMessage } from '@/models/Message';
 
-const message: SlackMessage<{ userIcon: string; userName: string }> = (
+export const locked: SlackMessage<{ userIcon: string; userName: string }> = (
   props,
 ) => {
   return {
@@ -16,5 +16,3 @@ const message: SlackMessage<{ userIcon: string; userName: string }> = (
     ],
   };
 };
-
-export default message;
