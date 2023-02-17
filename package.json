@@ -1,15 +1,15 @@
 {
   "name": "dsc-smart-lock",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "author": "OctSquid",
   "license": "MIT",
   "scripts": {
     "start": "ts-node --files -r tsconfig-paths/register src/app.ts",
-    "build": "tsc",
+    "build": "tsc .",
     "dev": "cross-env NODE_ENV=dev ts-node-dev --files -r tsconfig-paths/register --respawn ./src/app.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint .",
+    "lint": "eslint --cache src",
     "format": "prettier --ignore-unknown --write ."
   },
   "dependencies": {

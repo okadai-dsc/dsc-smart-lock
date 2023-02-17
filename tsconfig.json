@@ -14,6 +14,7 @@
     "resolveJsonModule": true,
     "sourceMap": true,
     "typeRoots": ["./src/models"],
+    "incremental": true,
     "paths": {
       "*": ["node_modules/*"],
       "@/*": ["src/*"]
