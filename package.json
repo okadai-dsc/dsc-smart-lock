@@ -7,7 +7,7 @@
   "scripts": {
     "start": "ts-node --files -r tsconfig-paths/register src/app.ts",
     "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
-    "dev": "cross-env NODE_ENV=dev ts-node-dev --files -r tsconfig-paths/register --respawn ./src/app.ts",
+    "dev": "cross-env NODE_ENV=development ts-node-dev --files -r tsconfig-paths/register --respawn ./src/app.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --cache src",
     "format": "prettier --ignore-unknown --write ."

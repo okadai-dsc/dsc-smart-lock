@@ -20,7 +20,7 @@
       "restart": true,
       "sourceMaps": true,
       "env": {
-        "NODE_ENV": "dev"
+        "NODE_ENV": "development"
       }
     }
   ]
