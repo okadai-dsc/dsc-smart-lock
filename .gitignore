@@ -10,3 +10,6 @@ config/*
 
 # logs
 logs
+
+# cache
+.eslintcache
