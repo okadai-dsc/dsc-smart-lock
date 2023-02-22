@@ -41,6 +41,7 @@ export default async (client: Client) => {
               onTaskError(e, task);
             }
           }, task.interval);
+          await task.execute(client);
           Logger.info(`🕛 Successfully scheduled task: ${task.name}`);
           break;
         case 'scheduled':
