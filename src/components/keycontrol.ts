@@ -70,7 +70,7 @@ const component: MessageActionComponent = {
         }
       }
 
-      await interaction.deferReply();
+      await interaction.deferReply({ ephemeral: true });
       switch (interaction.customId) {
         case 'keycontrol.lock':
           await SesameAPI.control(82, userName, 'Discord');
