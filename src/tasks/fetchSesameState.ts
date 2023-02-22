@@ -11,7 +11,7 @@ import { ChannelType, MessageType } from 'discord.js';
 const fetchSesameStatus: IntervalTask = {
   type: 'interval',
   name: 'fetchSesameStatus',
-  interval: 5 * 60 * 1000,
+  interval: 10 * 60 * 1000,
   execute: async (client) => {
     // ステータス投稿チャンネルを取得
     const channelId = config.get<string>('discord.statusChannelID');
