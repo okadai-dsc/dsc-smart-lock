@@ -5,6 +5,9 @@ import { IntervalTask } from '@/models/Task';
 import config from 'config';
 import { ChannelType, MessageType } from 'discord.js';
 
+/**
+ * Sesameのステータスを確認するタスク
+ */
 const fetchSesameStatus: IntervalTask = {
   type: 'interval',
   name: 'fetchSesameStatus',
@@ -22,10 +25,13 @@ const fetchSesameStatus: IntervalTask = {
       // チャンネルからメッセージを取得し、新しい順にソート
       const messages = await channel.messages.fetch({ limit: 50 });
       messages.sort((a, b) => b.createdTimestamp - a.createdTimestamp);
+
+      // Bot が送信したメッセージを取得
       const message = messages.find(
         (msg) =>
           msg.author.id == client.user?.id && msg.type != MessageType.Reply,
       );
+      // ステータスパネルを更新, または新規送信
       if (message) {
         message.edit({
           ...DiscordMessages.deviceStatus(status),
