@@ -33,11 +33,11 @@ client.components = new Collection<string, MessageActionComponent>();
 
 const handlersDir = join(__dirname, './handlers');
 
-Promise.all(
-  readdirSync(handlersDir).map(async (handler) => {
-    if (!(handler.endsWith('.ts') || handler.endsWith('.js'))) return;
-    await (await import(`${handlersDir}/${handler}`)).default(client);
-  }),
-).then(() => {
-  client.login(config.get('discord.token'));
+client.login(config.get('discord.token')).then(() => {
+  Promise.all(
+    readdirSync(handlersDir).map(async (handler) => {
+      if (!(handler.endsWith('.ts') || handler.endsWith('.js'))) return;
+      await (await import(`${handlersDir}/${handler}`)).default(client);
+    }),
+  );
 });
